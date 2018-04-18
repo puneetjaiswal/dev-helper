@@ -1,0 +1,33 @@
+# Set up docker
+brew install docker
+brew install docker-compose
+brew install docker-machine 
+
+install docker app.
+
+docker-machine create --driver virtualbox docker-vm
+
+####### To create a MySQL container run:
+docker run -d -p 3306:3306  --name mysqldb -e MYSQL_ROOT_PASSWORD=root123 -e MYSQL_DATABASE=testdb -d mysql:5.7
+
+docker container ls
+docker inspect mysqldb
+docker port mysqldb 3306
+
+# Start mysql container
+docker start mysql
+
+# Connects as bellow command
+ mysql -uroot -proot123 -h0.0.0.0
+
+
+###### start postgres container
+docker run -p 5432:5432 --name postgresdb -e POSTGRES_PASSWORD=root123 -d postgres
+
+docker start postgresdb
+
+psql -h 0.0.0.0 -U postgres 
+
+###### start a nginx container
+docker run -d -p 80:80 --name webserver nginx
+
